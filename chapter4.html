@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Sample</title>
+</head>
+<body>
+  <div id="root"></div>
+
+<script
+  src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+<script>
+  const dish = React.createElement('h1', null, 'Baked Salmon');
+  const dessert = React.createElement('h2', null, 'Coconut Rice Pudding');
+
+  const list = React.createElement('ul', null,
+    React.createElement('li', null, '1 lb Salmon'),
+    React.createElement('li', null, '1 cup Jasmine Rice'),
+    React.createElement('li', null, '1 cup Coconut Milk'),
+    React.createElement('li', null, '1/2 cup Golden Raisins'),
+    React.createElement('li', null, '1/3 cup Sugar')
+  );
+
+  const items = [
+      "2 cups Jasmine Rice",
+        "1 cup Coconut Milk",
+        "1/2 cup Golden Raisins",
+        "1/3 cup Sugar"
+  ]
+
+  function IngredientsList({items}){
+      return React.createElement(
+          'ul', {className: 'ingredients'},
+            items.map((ingredient, i) => React.createElement('li', {key: i}, ingredient))
+      )
+  }
+
+  const section = React.createElement('section', {id: 'baked-salmon'},
+    React.createElement('h1', null, 'Baked Salmon'),
+    React.createElement('ul', {className: 'ingredients'},
+      items.map((ingredient, i) => React.createElement('li', {key: i}, ingredient))
+    ),
+      React.createElement('section', {id: 'instructions'},
+        React.createElement('h2', null, 'Instructions'),
+        React.createElement('p', null, 'Preheat the oven to 350 degrees.'),
+        React.createElement('p', null, 'Spread the rice in an even layer in a baking dish.'),
+        React.createElement('p', null, 'In a saucepan, combine the coconut milk, raisins, and sugar.'),
+        React.createElement('p', null, 'Cook over medium heat until the sugar dissolves.'),
+        React.createElement('p', null, 'Pour the mixture over the rice.'),
+        React.createElement('p', null, 'Place the salmon on top of the rice.'),
+        React.createElement('p', null, 'Cover with foil and bake for 20 minutes.')
+      )
+  );
+  ReactDOM.render([dish, dessert, section], document.getElementById('root'));
+  ReactDOM.render(React.createElement(IngredientsList, {items}, null), document.getElementById('root'));
+</script>
+</body>
+</html>
